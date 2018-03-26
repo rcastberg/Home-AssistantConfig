@@ -91,9 +91,12 @@
             - sensor.midgard_kernel
             - sensor.midgard_rockstor_ver
             - sensor.midgard_uptime
-            - binary_sensor.wp
-            - sensor.ssl_certificate_expiry
-            - sensor.ssl_certificate_expiry_2
+    webserver:
+      name: Webserver status
+      entities:
+        - binary_sensor.wp
+        - sensor.www_certificate
+        - sensor.moss_certificate
     doors:
         name: Door status
         entities:

@@ -1,13 +1,13 @@
-    front_door:
-        name: Front door is open
-        done_message: Front door is closed
-        entity_id: binary_sensor.inngang
-        state : 'on'
-        repeat: 5
-        can_acknowledge: True
-        skip_first: false
-        notifiers:
-            - Hass_Notify
+# front_door:
+#        name: Front door is open
+#        done_message: Front door is closed
+#        entity_id: binary_sensor.inngang
+#        state : 'on'
+#        repeat: 5
+#        can_acknowledge: True
+#        skip_first: false
+#        notifiers:
+#            - Hass_Notify
     #    alarm_arm:
     #        name: Alarm is armed
     #    done_message: Alarm is armed
