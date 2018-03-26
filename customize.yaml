@@ -78,3 +78,5 @@ binary_sensor.wp:
   friendly_name: "Web server"
 device_tracker.hpm252dw:
   hidden: true
+sensor.ink_levels_for_hp_m252dw_printer:
+  hidden: true

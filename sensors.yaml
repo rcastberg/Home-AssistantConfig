@@ -80,20 +80,6 @@
     state_topic: 'picturesquepelican/location/renes7'
     name: rene_location
     value_template: '{{ value_json.location }}'
-  - platform: template
-    sensors:
-      loki_status:
-        friendly_name: "Loki Status"
-        value_template: "{{ states.sensor.surepet_connect.attributes.Loki }}"
-      flap_battery_status:
-        friendly_name: "Sure Flap Status"
-        value_template: "{{ states.sensor.surepet_connect.attributes.battery }}"
-        unit_of_measurement: '%'
-      nsb_iframe:
-        value_template: iframe
-      printer_online:
-        value_template: "{% if is_state('device_tracker.hpm252dw', 'home') %}online{% else %}offline{% endif %}"
-        icon_template:  "{% if is_state('device_tracker.hpm252dw', 'home') %}mdi:pipe{% else %}mdi:pipe-disconnected{% endif %}"
   - platform: history_stats
     name: Loki outside time (today)
     entity_id: sensor.loki_status
@@ -115,4 +101,54 @@
     host: www.castberg.org
     name: www Certificate
   - platform: cpuspeed
+  - platform: template
+    sensors:
+      loki_status:
+        friendly_name: "Loki Status"
+        value_template: "{{ states.sensor.surepet_connect.attributes.Loki }}"
+      flap_battery_status:
+        friendly_name: "Sure Flap Status"
+        value_template: "{{ states.sensor.surepet_connect.attributes.battery }}"
+        unit_of_measurement: '%'
+      nsb_iframe:
+        value_template: iframe
+      printer_online:
+        value_template: "{% if is_state('device_tracker.hpm252dw', 'home') %}online{% else %}offline{% endif %}"
+        icon_template:  "{% if is_state('device_tracker.hpm252dw', 'home') %}mdi:pipe{% else %}mdi:pipe-disconnected{% endif %}"
+      m252dw_magenta:
+        friendly_name: "Magenta ink levels"
+        value_template: >
+          {% if states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Magenta is defined %}
+            {{ states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Magenta }}
+          {% else %}
+            {{ states('sensor.m252dw_magenta') }}
+          {% endif %}
+        unit_of_measurement: '%'
+      m252dw_black:
+        friendly_name: "Black ink levels"
+        value_template: >
+          {% if states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Black is defined %}
+            {{ states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Black }}
+          {% else %}
+            {{ states('sensor.m252dw_black') }}
+          {% endif %}
+        unit_of_measurement: '%'
+      m252dw_yellow:
+        friendly_name: "Yellow ink levels"
+        value_template: >
+          {% if states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Yellow is defined %}
+            {{ states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Yellow }}
+          {% else %}
+            {{ states('sensor.m252dw_yellow') }}
+          {% endif %}
+        unit_of_measurement: '%'
+      m252dw_cyan:
+        friendly_name: "Cyan ink levels"
+        value_template: >
+          {% if states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Cyan is defined %}
+            {{ states.sensor.ink_levels_for_hp_m252dw_printer.attributes.Cyan }}
+          {% else %}
+            {{ states('sensor.m252dw_cyan') }}
+          {% endif %}
+        unit_of_measurement: '%'
 

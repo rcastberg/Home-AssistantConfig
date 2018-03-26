@@ -160,4 +160,7 @@
       name: "HP Printer"
       entities:
         - sensor.printer_online
-        - sensor.ink_levels_for_hp_m252dw_printer
+        - sensor.m252dw_black
+        - sensor.m252dw_cyan
+        - sensor.m252dw_magenta
+        - sensor.m252dw_yellow

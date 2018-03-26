@@ -75,12 +75,12 @@ class ink_M252dw(Entity):
            Provide the parsed JSON data (if any).
         """
         return self._attributes
-    
+
 def get_ink_levels(HOSTIP):
     try:
         page = requests.get("https://" + HOSTIP + "/hp/device/info_suppliesStatus.html?tab=Home&menu=SupplyStatus", verify=False, timeout=2)
     except requests.exceptions.Timeout:
-        return None
+        return {'Black' : None, 'Magenta' : None, 'Cyan' : None, 'Yellow' : None}
     soup = BeautifulSoup(page.content, 'html.parser')
     inkstatus = soup.find_all('td', class_='SupplyName')
     ink_levels={}
