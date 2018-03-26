@@ -1,0 +1,97 @@
+ - platform: digital_ocean
+   droplets:
+     - 'WP'
+   scan_interval : 600
+ - platform: mqtt
+   name: "Renes S7 status - raw"
+   state_topic: zanzito/renes7/status 
+   payload_on: "1"
+   payload_off: "0"
+   sensor_class: connectivity
+   hidden : true
+ - platform: template
+   sensors:
+     rcc_mobil_status:
+       friendly_name: "Renes S7 status"
+       device_class: connectivity
+       value_template : "{{ is_state('binary_sensor.renes_s7_status__raw', 'on' ) }}"
+       delay_off: 
+         minutes: 5
+       icon_template: >
+          {% if is_state('binary_sensor.renes_s7_status__raw', 'on') %}
+            mdi:pipe
+          {% else %}
+            mdi:pipe-disconnected
+          {% endif %}
+     freezer_temp_high:
+       value_template: '{{ float(states.sensor.freezer_temperature.state)  > -12.0 }}'
+       friendly_name: 'Freezer temp too high'
+     lock_status:
+       friendly_name: "Sure Flap"
+       device_class: lock
+       value_template: "{{ not states.sensor.surepet_connect.attributes.locked}}"
+       icon_template : >
+          {% if states.sensor.surepet_connect.attributes.locked %}
+            mdi:lock
+          {% else %}
+            mdi:lock-open
+          {% endif %}
+     flap_status:
+       friendly_name: "Flap online Status"
+       device_class: connectivity
+       value_template: "{{ states.sensor.surepet_connect.attributes.flap_online }}"
+       icon_template : >
+          {% if states.sensor.surepet_connect.attributes.flap_online %}
+            mdi:wifi
+          {% else %}
+            mdi:wifi-off
+          {% endif %}
+     throttled_pi:
+       friendly_name: "Raspberry PI throttled"
+       value_template: "{{ states.sensor.raspberry_pi_throttle_check.attributes.event }}"
+     hub_status:
+       friendly_name: "Hub online Status"
+       device_class: connectivity
+       value_template: "{{ states.sensor.surepet_connect.attributes.hub_online }}"
+       icon_template : >
+          {% if states.sensor.surepet_connect.attributes.hub_online %}
+            mdi:wifi
+          {% else %}
+            mdi:wifi-off
+          {% endif %}
+     dnvgl_laptop:
+       friendly_name: "DNV GL Laptop"
+       device_class : presence
+       value_template: >-
+         {{ is_state('device_tracker.osll406134', 'on')
+             or is_state('device_tracker.osll406134_2', 'on') 
+             or is_state('device_tracker.osll406134_3', 'on')
+         }}
+     tablet_low_battery:
+       friendly_name : "Tablet battery below 40%"
+       device_class : battery
+       value_template: >-
+         {% if float(states.sensor.renes_tablet_battery.state) < 40 
+            and 
+            states.sensor.nexus9_charging.state == 'False'
+          %}
+           true
+         {% else %}
+           false
+         {% endif %}
+     phone_low_battery:
+       friendly_name : "Phone needs charging"
+       device_class: battery
+       value_template: >-
+         {% if ( (is_state('device_tracker.renes7', 'DNV-GL') or is_state('device_tracker.renes7', 'Home') ) and 
+           float(states.sensor.renes_phone_battery.state) < 50 and
+           states.sensor.s7_charging.state == 'False'
+         ) 
+         or 
+         ( float(states.sensor.renes_phone_battery.state) < 20 and
+           states.sensor.s7_charging.state == 'False'
+         ) %}
+           true
+         {% else %}
+           false
+         {% endif %}

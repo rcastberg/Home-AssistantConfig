@@ -1,0 +1,16 @@
+    grafana:
+        title: 'Grafana'
+        icon: 'mdi:chart-histogram'
+        url: 'https://grafana.hass.moss.castberg.org/dashboard/db/default?orgId=1&from=now-7d&to=now'
+    smoke:
+        title: 'Smokeping'
+        icon: 'mdi:help-network'
+        url: 'https://smoke.moss.castberg.org/smokeping/smokeping.cgi?target=Local'
+    deconz:
+        title: 'deCONZ'
+        icon: 'mdi:lightbulb'
+        url: 'https://deconz.moss.castberg.org/'
+    term:
+        title: 'term'
+        icon: 'mdi:console'
+        url: 'https://term.hass.moss.castberg.org/'

@@ -1,0 +1,80 @@
+    front_door:
+        name: Front door is open
+        done_message: Front door is closed
+        entity_id: binary_sensor.inngang
+        state : 'on'
+        repeat: 5
+        can_acknowledge: True
+        skip_first: false
+        notifiers:
+            - Hass_Notify
+    #    alarm_arm:
+    #        name: Alarm is armed
+    #    done_message: Alarm is armed
+    #    entity_id: alarm_control_panel.rnningen_alarm
+    #    state : "armed_away"
+    #    repeat : 5
+    #    can_acknowledge: True
+    #    skip_first: false
+    #    notifiers:
+    #        - Hass_Notify
+    freezer_temp:
+      name: Freezer temp is High
+      entity_id: binary_sensor.freezer_temp_high
+      repeat: 30
+      notifiers:
+        - Hass_Notify
+        - mailgun
+        #switch:
+        #    platform: template
+    #    switches:
+    #        yale_lock:
+    #            friendly_name: 'Ytterdør'
+    #            value_template: '{{ states.lock.state }}'
+    #            turn_on:
+    #                service: lock.lock
+    #                data:
+    #                  entity_id: lock.dr
+    #                  code: !secret lock_code
+    #            turn_off:
+    #                service: lock.unlock
+    #                data:
+    #                  entity_id: lock.dr
+    #                  code: !secret lock_code
+    water_bathroom:
+      name: Water detected in bathroom
+      entity_id : binary_sensor.bathroom_sensor
+      repeat: 5
+      notifiers:
+        - Hass_Notify
+        - mailgun
+    water_kitchen:
+      name: Water detected in kitchen
+      entity_id : binary_sensor.kitchen_sensor
+      repeat: 5
+      notifiers:
+        - Hass_Notify
+        - mailgun
+    tablet_low_battery:
+      repeat: 
+        - 15
+        - 60
+        - 120
+      name: Tablet has a low battery
+      entity_id : binary_sensor.tablet_low_battery
+      notifiers:
+        - Hass_Notify
+        - mailgun
+    phone_low_battery:
+      name: Phone has a low battery
+      repeat: 
+        - 15
+        - 20
+        - 30
+        - 40
+        - 60
+        - 90
+        - 120
+      entity_id : binary_sensor.phone_low_battery
+      notifiers:
+        - Hass_Notify

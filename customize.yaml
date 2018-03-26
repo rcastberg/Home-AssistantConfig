@@ -1,0 +1,80 @@
+binary_sensor.renes_s7_status__raw:
+  hidden: true
+sensor.load_5m:
+  unit_of_measurement: load
+device_tracker.osll406134:
+  hidden: true
+device_tracker.osll406134_2:
+  hidden: true
+device_tracker.osll406134_3:
+  hidden: true
+sensor.alarm_level:
+  hidden: true
+sensor.alarm_type:
+  hidden: true
+sensor.surepet_connect:
+  hidden: true
+sensor.bathroom_alarm_level:
+  hidden: true
+sensor.bathroom_alarm_type:
+  hidden: true
+sensor.bathroom_flood:
+  hidden: true
+sensor.bathroom_sourcenodeid:
+  hidden: true
+sensor.aeotec_dsb45_water_sensor_flood_2:
+  hidden: true
+sensor.aeotec_dsb45_water_sensor_sourcenodeid_2:
+  hidden: true
+sensor.alarm_level_3:
+  hidden: true
+sensor.alarm_type_3:
+  hidden: true
+binary_sensor.kitchen_sensor:
+  device_class:  moisture
+binary_sensor.sensor:
+  device_class:  moisture
+binary_sensor.sensor_3:
+  device_class:  moisture
+sensor.raspberry_pi_throttle_check:
+  hidden: true
+sensor.nsb_iframe:
+  custom_ui_state_card: state-card-iframe
+  config:
+        height: 350
+        width: 108
+        scale: 1
+        url: http://mon.ruter.no/monitor/1045160/Moss?clock=false
+
+sensor.download_speed_mean:
+  friendly_name: 'Speedtest Download Average'
+  icon: mdi:speedometer
+
+sensor.upload_speed_mean:
+  friendly_name: 'Spedtest Upload Average'
+  icon: mdi:speedometer
+
+sensor.ping_time_mean:
+  friendly_name: 'Speedtest Ping Average'
+  icon: mdi:clock-fast
+
+sensor.wan_traffic_in_mean:
+  friendly_name: 'WAN Download Average'
+  icon: mdi:download
+
+sensor.wan_traffic_out_mean:
+  friendly_name: 'WAN Upload Average'
+  icon: mdi:upload
+sensor.snmp_wan_in:
+  hidden: true
+sensor.snmp_wan_out:
+  hidden: true
+  
+input_number.internet_traffic_delta_in:
+  hidden: true
+input_number.internet_traffic_delta_out:
+  hidden: true
+binary_sensor.wp:
+  friendly_name: "Web server"
+device_tracker.hpm252dw:
+  hidden: true

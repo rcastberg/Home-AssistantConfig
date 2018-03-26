@@ -1,0 +1,120 @@
+media_player.galaxy_s7:
+  name:
+  platform: plex
+  unique_id: 6eb7715c89434da9-com-plexapp-android
+media_player.katty:
+  name:
+  platform: plex
+  unique_id: 9B5D5842-CC66-4D71-B304-C5C3BF961499
+media_player.fire_tv:
+  name:
+  platform: plex
+  unique_id: d443b99292af5973-com-plexapp-android
+binary_sensor.kitchen_sensor:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143571968
+switch.switch:
+  name:
+  platform: zwave
+  unique_id: 8-72057594176946176
+binary_sensor.sensor:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193903616
+sensor.unknown:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159170
+sensor.alarm_type:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191361
+sensor.alarm_level:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191377
+sensor.power:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177142850
+media_player.galaxy_s7_2:
+  name:
+  platform: plex
+  unique_id: 72cb9ba0de1e9873-com-plexapp-android
+media_player.nexus_9_lte:
+  name:
+  platform: plex
+  unique_id: 682e6ed95f9e990b-com-plexapp-android
+media_player.plex_web_chrome:
+  name:
+  platform: plex
+  unique_id: fb9y33s315v
+media_player.living_room:
+  name:
+  platform: cast
+  unique_id: 7dc1cbda-70a8-a28f-71ee-c8731a6dd9df
+media_player.dining_room_speaker:
+  name:
+  platform: cast
+  unique_id: cafe278b-62b0-8ad7-7bce-4157bc8f4db8
+sensor.bathroom_alarm_type:
+  name:
+  platform: zwave
+  unique_id: 9-72057594194968577
+sensor.bathroom_alarm_level:
+  name:
+  platform: zwave
+  unique_id: 9-72057594194968593
+sensor.bathroom_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 9-72057594194968609
+sensor.bathroom_flood:
+  name:
+  platform: zwave
+  unique_id: 9-72057594194968705
+binary_sensor.sensor_2:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210680832
+sensor.alarm_type_2:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745793
+sensor.alarm_level_2:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745809
+sensor.aeotec_dsb45_water_sensor_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745825
+sensor.aeotec_dsb45_water_sensor_flood:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745921
+binary_sensor.sensor_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227458048
+sensor.alarm_type_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523009
+sensor.alarm_level_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523025
+sensor.aeotec_dsb45_water_sensor_sourcenodeid_2:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523041
+sensor.aeotec_dsb45_water_sensor_flood_2:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523137
+media_player.chrome:
+  name:
+  platform: plex
+  unique_id: 3ndwov3yfyn5evktdau0z7ax

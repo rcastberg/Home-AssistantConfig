@@ -1,0 +1,33 @@
+- alias: Daily Backup at 3 AM
+  trigger:
+    platform: time
+    at: '3:00:00'
+  action:
+  - service: hassio.snapshot_full
+    data_template:
+      name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+
+- alias: Update Backup at 1 AM
+  trigger:
+    platform: time
+    at: '01:05:00'
+  action:
+  - service: shell_command.run_update
+- alias: Monitor Traffic in
+  trigger:
+    platform: state
+    entity_id: sensor.snmp_wan_in
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.internet_traffic_delta_in
+        value: '{{ ((trigger.to_state.state | int - trigger.from_state.state | int) * 8 ) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated) ) }}'
+- alias: Monitor Traffic out
+  trigger:
+    platform: state
+    entity_id: sensor.snmp_wan_out
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.internet_traffic_delta_out
+        value: '{{ ((trigger.to_state.state | int - trigger.from_state.state | int) * 8 ) / ( as_timestamp(trigger.to_state.last_updated) - as_timestamp(trigger.from_state.last_updated) ) }}'

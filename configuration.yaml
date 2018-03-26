@@ -1,0 +1,230 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: metric
+  time_zone: !secret location
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-iframe.html
+map:
+
+# Enables configuration UI
+config:
+
+cloud:
+
+http:
+  api_password: !secret http_password
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
+
+updater:
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor: !include sensors.yaml
+
+input_number:
+  internet_traffic_delta_in:
+    name: "Traffic IN Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+
+  internet_traffic_delta_out:
+    name: "Traffic OUT Delta"
+    initial: 0
+    min: 0
+    max: 1000000000000
+# Text to speech
+tts:
+  - platform: google
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+tellduslive:
+
+verisure:
+    username: !secret verisure_user
+    password: !secret verisure_pw
+
+mailgun:
+  domain: mail.moss.castberg.org
+  api_key: !secret mailgun_api
+  sandbox: False
+
+notify:
+  - name: mailgun
+    platform: mailgun
+    recipient: rene@castberg.org
+  - name: Hass_Notify
+    platform: html5
+    gcm_api_key: !secret Notify_Google_ApiKey
+    gcm_sender_id: !secret Notify_Google_ApiID
+
+logger: !include logger.yaml
+
+binary_sensor: !include binary_sensors.yaml
+
+alert: !include alert.yaml
+
+device_tracker:
+  - platform: asuswrt
+    host: !secret asus_host
+    username: !secret asus_user
+    protocol: ssh
+    track_new_devices: false
+    interval_seconds: 120
+    consider_home: 180
+    ssh_key: !secret asus_ssh_key
+  - platform : mqtt_json
+    devices:
+        renes7 : zanzito/renes7/location
+
+
+zone: !include zones.yaml
+
+sensor speedtest:
+    - platform: speedtest
+      monitored_conditions:
+        - ping
+        - download
+        - upload
+      minute: 30
+      hour:
+        - 2
+        - 14
+
+sensor nut:
+  - platform: nut
+    resources:
+      - ups.load
+        #      - battery.runtime
+      - battery.charge
+    host: !secret midgard
+    alias: ups
+
+sensor midgard:
+    - platform: glances_rcc2
+      host: !secret midgard
+      name: Midgard
+      resources:
+        - 'adv:sensors.label=pch_skylake 1.value,CPU Temp,degC'
+        - 'adv:fs.mnt_point=/mnt2/RenesData.percent,RenesData,%'
+        - 'adv:load.min5,CPU Load 5min,load'
+        - 'adv:mem.percent,Free memory,%'
+        - 'adv:uptime,Uptime,'
+        - 'adv:system.os_version,Kernel,'
+        - 'adv:system.linux_distro,Rockstor ver,'
+camera:
+#    - platform: mjpeg
+#      mjpeg_url: !secret dl_url
+#      still_image_url: !secret dl_image_url
+#      username: !secret dl_username
+#      password: !secret dl_password
+#      verify_ssl: False
+    - platform: generic
+      still_image_url: https://api.sat24.com/animated/SCAN/visual/2/Romance%20Standard%20Time/1054987
+      name: Weather_Oslo
+    - platform: generic
+      still_image_url: https://api.sat24.com/animated/SCAN/infraPolair/2/Romance%20Standard%20Time/519942
+      name: Weather_IR_Oslo
+    - platform: generic
+      still_image_url: https://www.yr.no/sted/Norge/%C3%98stfold/Moss/Moss/sannsynlighetsvarsel.png
+      name: Forecast_Moss
+    - platform: generic
+      still_image_url: https://www.yr.no/en/map/radar/1-46556/Norway/%C3%98stfold/Moss/Moss
+      name: precipitation_norway      
+
+wake_on_lan Utgard:
+    mac: !secret Utgard_mac
+
+recorder:
+    exclude:
+        entities:
+            - sensor.midgard_uptime
+            - binary_sensor.renes_s7_status__raw
+            - device_tracker.osll406134
+            - device_tracker.osll406134_2
+            - device_tracker.osll406134_3
+weather:
+    - platform: yweather
+
+history_graph:
+    gr2:
+        name: SpeedTest
+        entities:
+            - sensor.speedtest_download
+            - sensor.speedtest_upload
+            - sensor.speedtest_ping
+        refresh: 600
+        hours_to_show: 48
+    gr3:
+        name: Hass_io
+        entities:
+            - sensor.load_5m
+            - sensor.memory_free
+        refresh: 60
+        hours_to_show: 6
+mqtt:
+    broker: !secret midgard
+    port:  !secret mqtt_port 
+    username: !secret mqtt_user
+    password: !secret mqtt_pw
+    client_id: HomeAssistant
+    keepalive: 60
+
+influxdb:
+    host : !secret hassio_ip
+    database: "home_assistant"
+
+# google_assistant:
+#   project_id: !secret ga_proj_id
+#   client_id:  !secret ga_client_id
+#   access_token: !secret ga_acc_token
+#   agent_user_id: !secret ga_user_id
+#   api_key: !secret ga_api_key
+#   exposed_domains:
+#     - switch
+#     - light
+#     - group
+
+zwave : !include zwave.yaml
+
+panel_iframe: !include panel-iframe.yaml
+
+deconz:
+    host: !secret hassio_ip
+    port: !secret deconz_port
+    api_key: !secret deconz_apikey
+
+shell_command:
+    run_update : '/config/bin/check_and_update.py'
+
+digital_ocean:
+  access_token: !secret do_apikey
+
+

@@ -1,0 +1,163 @@
+#    default_view:
+#        view: yes
+#        icon: mdi:home
+#        entities:
+#            - group.main_floor
+#            - group.cellar
+    climate:
+        name: Climate
+        view: yes
+        entities:
+            - group.cellar
+            - camera.weather_oslo
+            - camera.weather_ir_oslo
+            - group.main_floor
+            - group.Fridge_Freezer
+            - camera.forecast_moss
+            - weather.yweather
+    IT:
+        name: IT
+        view: yes
+        entities:
+            - group.speed_test
+            - group.server
+            - group.hass_sys
+
+    Automation:
+        name: Home Automation
+        view: yes
+        entities:
+            - group.doors
+            - group.all_switches
+            - camera.gang
+    cellar:
+        name: Cellar
+        entities:
+            - sensor.downstairs_temperature
+            - sensor.downstairs_humidity
+            - sensor.kjeller_temperature
+            - sensor.kjeller_humidity
+            - sensor.mat_bod_temperature
+            - sensor.mat_bod_humidity
+            - sensor.workshop_humidity
+            - sensor.workshop_temperature
+    main_floor:
+        name: Ground Floor
+        entities:
+            - sensor.hall_temperature
+            - sensor.kjkken_temperature
+            - sensor.gang_temperature_2
+            - sensor.living_room_temperature
+            - sensor.living_room_humidity
+    second_floor:
+      name: Second Floor
+      entities:
+        - sensor.bedroom__teldus_temperature
+        - sensor.bedroom__teldus_humidity
+        - sensor.gang_humidity
+        - sensor.gang_temperature
+    speed_test:
+        name: Speed Test
+        entities:
+            - sensor.speedtest_download
+            - sensor.speedtest_upload
+            - sensor.speedtest_ping
+            - history_graph.speedtest
+    internet_use:
+      name: Internet Useage
+      entities:
+        - sensor.internet_speed_in
+        - sensor.internet_speed_out
+        - sensor.wan_traffic_in_mean
+        - sensor.wan_traffic_out_mean
+    Fridge_Freezer:
+        name: Fridges and Freezers
+        entities:
+            - binary_sensor.freezer_temp_high
+            - sensor.freezer_temperature
+            - sensor.freezer_humidity
+            - sensor.vin_skap_humidity
+            - sensor.vin_skap_temperature
+    server:
+        name: Midgard Status
+        entities:
+            - sensor.nut_ups_load
+              #- sensor.nut_ups_battery_runtime
+            - sensor.nut_ups_battery_charge
+            - sensor.midgard_cpu_load_5min
+            - sensor.midgard_cpu_temp
+            - sensor.midgard_renesdata
+            - sensor.midgard_free_memory
+            - sensor.midgard_kernel
+            - sensor.midgard_rockstor_ver
+            - sensor.midgard_uptime
+            - binary_sensor.wp
+            - sensor.ssl_certificate_expiry
+            - sensor.ssl_certificate_expiry_2
+    doors:
+        name: Door status
+        entities:
+            - binary_sensor.garasje
+            - binary_sensor.inngang
+            - lock.dr
+            - group.all_locks
+
+    hass_sys:
+        name: Hassio Status
+        entities:
+            - sensor.memory_free
+            - sensor.load_5m
+            - sensor.disk_use_percent_config
+            - binary_sensor.throttled_pi
+            - history_graph.hass_io
+    rene_location:
+      name: Renes Location
+      entities:
+           - device_tracker.renes7
+           - sensor.rene_location
+           - binary_sensor.dnvgl_laptop
+    RenesDev:
+         name: Renes Devices
+         entities:
+           - binary_sensor.rcc_mobil_status
+           - binary_sensor.renes_phone_battery_charging
+           - binary_sensor.renes_tablet_battery_charging
+           - sensor.renes_phone_battery
+           - sensor.renes_phone_battery_charging
+           - sensor.renes_tablet_battery
+           - binary_sensor.tablet_low_battery
+           - binary_sensor.phone_low_battery
+           - sensor.nexus9_charging
+           - sensor.s7_charging
+    WaterSensors:
+        name: Water Sensors
+        entities:
+            - binary_sensor.kitchen_sensor
+            - binary_sensor.sensor
+            - binary_sensor.sensor_3
+    CatFlap:
+        name: Sure Cat Flap Status
+        entities:
+            - binary_sensor.hub_status
+            - binary_sensor.flap_status
+            - sensor.loki_status
+            - binary_sensor.lock_status
+            - sensor.flap_battery_status
+            - sensor.loki_outside_time_today
+            - sensor.loki_trips_outside_today
+    PowerInfo:
+        name : Power sensors
+        entities :
+            - sensor.power
+            - sensor.unknown
+
+    nsb_info:
+        name: ' '
+        entities:
+          - sensor.nsb_iframe
+
+    printer:
+      name: "HP Printer"
+      entities:
+        - sensor.printer_online
+        - sensor.ink_levels_for_hp_m252dw_printer

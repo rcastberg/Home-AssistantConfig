@@ -1,0 +1,16 @@
+    default: info
+    logs:
+        homeassistant.components.http: error
+        homeassistant.core: warn
+        homeassistant.components.device_tracker: debug
+        homeassistant.components.device_tracker.asuswrt: warn
+        plexapi: warn
+        pychromecast: warn
+        homeassistant.components.media_player: warn
+        homeassistant.components.mqtt: warn
+        homeassistant.components.discovery : warn
+        homeassistant.components.device_tracker.owntracks : warn
+        custom_components.sensor.sure_petflap: warn
+        custom_components.sensor.glances_rcc2 : warn
+        homeassistant.helpers.script : warn
+        homeassistant.components.shell_command: debug

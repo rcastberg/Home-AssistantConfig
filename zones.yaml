@@ -1,0 +1,42 @@
+    - name: DNV-GL
+      latitude: 59.888550
+      longitude: 10.564693
+      radius: 250
+      icon: mdi:anchor
+
+    - name: Home
+      latitude: !secret latitude
+      longitude: !secret longitude
+      radius: 100
+      icon: mdi:home
+
+    - name : Central Station
+      latitude: 59.90666304
+      longitude: 10.750496998
+      radius: 1000
+      icon: mdi:train
+
+    - name : Skøyen Station
+      latitude: 59.922363
+      longitude: 10.678671
+      radius: 1000
+      icon: mdi:train
+
+    - name : Ski
+      latitude: 59.719135
+      longitude: 10.835539
+      radius: 5000
+      icon: mdi:train
+
+    - name : Moss
+      latitude: 59.432019
+      longitude: 10.657528
+      radius: 1000
+      icon: mdi:train
+
+    - name : Oslo
+      latitude : 59.925431
+      longitude : 10.743599
+      radius : 5000
+      icon: mdi:circle
+
